@@ -1,0 +1,93 @@
+---
+title: System Variables
+description: System Variables
+updatedDate: 2025-04-01T18:30:00.000Z
+heroImage: /System Variables.png
+---
+
+Angular Material components depend on system variables defined as CSS variables through the material.theme Sass mixin. This page provides guidance and documentation for using these variables to customize components.
+
+## Colors
+
+Material Design uses color to create accessible, personal color schemes that communicate your product's hierarchy, state, and brand. See Material Design's [Color System](https://m3.material.io/styles/color/system/overview) page to learn more about its use and purpose.
+
+The following colors are the most often used in Angular Material components. Use these colors and follow their uses to add theme colors to your application's custom components.
+
+Primary--mat-sys-primary
+
+The most common color used by Angular Material components to participate in the application theme.
+
+Examples include the background color of filled buttons, the icon color of selected radio buttons, and the outline color of form fields.
+
+Use the color --mat-sys-on-primary for icons, text, and other visual elements placed on a primary background. This color is calculated to be optimal for accessibility and legibility.
+
+Surface--mat-sys-surface
+
+A low-emphasis background color that provides a clear contrast for both light and dark themes and their varied theme colors.
+
+Examples include the background color of the application and most components such as the dialog, card, table, and more.
+
+Use the color --mat-sys-on-surface for icons, text, and other visual elements placed on a surface background. This color is calculated to be optimal for accessibility and legibility.
+
+Error--mat-sys-error
+
+High-contrast color meant to alert the user to attract immediate attention.
+
+Examples include the background color of the badge and the text color of invalid form fields inputs.
+
+Use the color --mat-sys-on-error for icons, text, and other visual elements placed on an error background. This color is calculated to be optimal for accessibility and legibility.
+
+Outline--mat-sys-outline
+
+Used for borders and dividers to help provide visual separation between and around elements.
+
+Examples include the color of the divider and border color of an outlined form field.
+
+Use the color --mat-sys-outline-variant for a less prominent outline.
+
+Other available colors
+
+##
+
+##
+
+##
+
+## Typography
+
+There are five categories of font types defined by Material Design: body, display, headline, label, and title. Each category has three sizes: small, medium, and large.
+
+Learn more about how these categories and their sizes should be used in your application by visiting Material Design's [Typography](https://m3.material.io/styles/typography/overview) documentation.
+
+body--mat-sys-body-smallLorem ipsum dolor--mat-sys-body-mediumLorem ipsum dolor--mat-sys-body-largeLorem ipsum dolordisplay--mat-sys-display-smallLorem ipsum dolor--mat-sys-display-mediumLorem ipsum dolor--mat-sys-display-largeLorem ipsum dolorheadline--mat-sys-headline-smallLorem ipsum dolor--mat-sys-headline-mediumLorem ipsum dolor--mat-sys-headline-largeLorem ipsum dolorlabel--mat-sys-label-smallLorem ipsum dolor--mat-sys-label-mediumLorem ipsum dolor--mat-sys-label-largeLorem ipsum dolortitle--mat-sys-title-smallLorem ipsum dolor--mat-sys-title-mediumLorem ipsum dolor--mat-sys-title-largeLorem ipsum dolor
+
+Each system variable can be applied to the "font" CSS style. Additionally, the parts of the variable definition can be accessed individually by appending the keywords "font", "line-height", "size", "tracking", and "weight".
+
+For example, the values for medium body text may be defined as follows:
+
+\--mat-sys-body-medium: 400 0.875rem / 1.25rem Roboto, sans-serif;
+\--mat-sys-body-medium-font: Roboto, sans-serif;
+\--mat-sys-body-medium-line-height: 1.25rem;
+\--mat-sys-body-medium-size: 0.875rem;
+\--mat-sys-body-medium-tracking: 0.016rem;
+\--mat-sys-body-medium-weight: 400;
+
+## Elevation
+
+Material Design provides six levels of elevation that can be used to provide a sense of depth and organization to an application's UI. Learn more at Material Design's [Elevation](https://m3.material.io/styles/elevation/overview) guide.
+
+These levels are defined as CSS box-shadow values that can be styled to an element.
+
+box-shadow: var(--mat-sys-level0)box-shadow: var(--mat-sys-level1)box-shadow: var(--mat-sys-level2)box-shadow: var(--mat-sys-level3)box-shadow: var(--mat-sys-level4)box-shadow: var(--mat-sys-level5)
+
+## Overrides
+
+The mat.theme-overrides mixin can be included to emit different definitions for the system variables and override the definitions emitted from mat.theme.
+
+This example container has several system variables overridden by including the following Sass code:  @include mat.theme-overrides((
+    primary: #ebdcff,
+    on-primary: #230f46,
+    body-medium: 500 1.15rem/1.3rem Arial,
+    corner-large: 32px,
+    level3: 0 4px 6px 1px var(--mat-sys-surface-dim),
+  ));

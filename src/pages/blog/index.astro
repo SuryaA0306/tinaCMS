@@ -1,0 +1,89 @@
+---
+import BaseHead from '../../components/BaseHead.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import config from '../../content/config/config.json';
+import { getCollection } from 'astro:content';
+import FormattedDate from '../../components/FormattedDate.astro';
+
+const posts = (await getCollection('blog')).sort(
+	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead title={config.seo.title} description={config.seo.description} />
+    <style>
+      main {
+        width: 960px;
+        margin: auto;
+      }
+      ul {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr); /* 4 columns */
+        gap: 1rem;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+      ul li {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      ul li img {
+        width: 100%;
+        height: auto;
+        max-width: 1020px;
+        border-radius: 12px;
+        transition: transform 0.3s ease-in-out;
+      }
+      ul li a {
+        text-decoration: none;
+        display: block;
+      }
+      ul li a:hover img {
+        transform: scale(1.05);
+      }
+      .title {
+        margin-top: 0.5rem;
+        font-size: 1.2em;
+        color: rgb(var(--black));
+        text-align: center;
+      }
+      .date {
+        font-size: 0.9em;
+        color: rgb(var(--gray));
+        text-align: center;
+      }
+      @media (max-width: 720px) {
+        ul {
+          grid-template-columns: repeat(2, 1fr); /* 2 columns for mobile */
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <Header />
+    <main>
+      <section>
+        <ul>
+          {posts.map((post) => (
+			//<p>{JSON.stringify(post, null, 2)}</p>
+            <li key={post.id}>
+              <a href={`/blog/${post.id}/`}>
+                <img src={post.data.heroImage} alt={post.data.title || "Blog Image"} />
+              </a>
+              
+            </li>
+          ))}
+        </ul>
+        
+      </section>
+    </main>
+  </body>
+</html>
+
